@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\Invitation;
+use App\Models\User;
+use App\Policies\Central\InvitationPolicy;
+use App\Policies\Central\UserPolicy;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -28,6 +33,9 @@ final class AppServiceProvider extends ServiceProvider
     {
         $this->bootModelsDefaults();
         $this->configureDefaults();
+
+        Gate::policy(Invitation::class, InvitationPolicy::class);
+        Gate::policy(User::class, UserPolicy::class);
     }
 
     private function configureDefaults(): void

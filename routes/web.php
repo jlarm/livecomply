@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn (): Factory|View => view('welcome'))->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(static function (): void {
+    Route::view('dashboard', 'dashboard')->name('dashboard');
+
+    Route::view('users', 'central.user.index')
+        ->middleware('can:viewAny, App\Models\User')
+        ->name('users.index');
+    Route::view('users/open-invites', 'central.user.open-invites')
+        ->middleware('can:viewAny, App\Models\Invitation')
+        ->name('users.open-invites');
+});
 
 require __DIR__.'/settings.php';
