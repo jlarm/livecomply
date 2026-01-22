@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/armp/Library/Application Support/Herd/bin/php85",
+            "args": [
+                "/Users/armp/Herd/livecomply/artisan",
+                "boost:mcp"
+            ]
+        },
+        "herd": {
+            "command": "/Users/armp/Library/Application Support/Herd/bin/php85",
+            "args": [
+                "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+            ],
+            "env": {
+                "SITE_PATH": "/Users/armp/Herd/livecomply"
+            }
+        }
+    }
+}
