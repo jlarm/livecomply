@@ -16,6 +16,27 @@ enum Role: string
     case EMPLOYEE = 'employee';
     case PORTER = 'porter';
 
+    public static function organizationRoles(): array
+    {
+        return [
+            self::OWNER,
+            self::CFO,
+            self::GM,
+            self::GSM,
+            self::MANAGER,
+            self::EMPLOYEE,
+            self::PORTER,
+        ];
+    }
+
+    public static function centralRoles(): array
+    {
+        return [
+            self::ADMIN,
+            self::CONSULTANT,
+        ];
+    }
+
     public function label(): string
     {
         return match ($this) {
@@ -29,5 +50,17 @@ enum Role: string
             self::EMPLOYEE => 'Employee',
             self::PORTER => 'Porter',
         };
+    }
+
+    public function canManageInvitations(): bool
+    {
+        return in_array($this, [
+            self::ADMIN,
+            self::OWNER,
+            self::CFO,
+            self::GM,
+            self::GSM,
+            self::MANAGER,
+        ], true);
     }
 }

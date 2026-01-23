@@ -9,7 +9,7 @@ new class extends Component {
 
     public function delete(): void
     {
-        $this->authorize('create', Invitation::class);
+        $this->authorize('create-central', Invitation::class);
 
         $this->invite->delete();
 

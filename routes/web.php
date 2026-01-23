@@ -12,10 +12,10 @@ Route::middleware(['auth', 'verified'])->group(static function (): void {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 
     Route::view('users', 'central.user.index')
-        ->middleware('can:viewAny, App\Models\User')
+        ->middleware('can:viewAnyCentral, App\Models\User')
         ->name('users.index');
     Route::view('users/open-invites', 'central.user.open-invites')
-        ->middleware('can:viewAny, App\Models\Invitation')
+        ->middleware('can:viewAnyCentral, App\Models\Invitation')
         ->name('users.open-invites');
 });
 

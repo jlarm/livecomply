@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Policies\Central;
+namespace App\Policies;
 
 use App\Enums\Role;
 use App\Models\User;
@@ -12,8 +12,13 @@ final class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function viewAnyCentral(User $user): bool
     {
         return $user->role === Role::ADMIN;
+    }
+
+    public function viewAnyOrganization(User $user): bool
+    {
+        return $user->role->canManageInvitations();
     }
 }

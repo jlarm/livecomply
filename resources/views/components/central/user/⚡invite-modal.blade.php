@@ -12,7 +12,7 @@ new class extends Component {
 
     public function submit(): void
     {
-        $this->authorize('create', Invitation::class);
+        $this->authorize('create-central', Invitation::class);
 
         $this->validate();
 
